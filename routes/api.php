@@ -14,14 +14,10 @@ Route::post('/chat', function (Request $request) {
 
     $data = [
         'model' => 'gpt-4o',
-        'tool_choice' => 'auto',
-        'tools' => [
-            ['type' => 'web_search_preview'],
-        ],
         'messages' => [
             [
                 'role' => 'system',
-                'content' => 'Eres un asistente diseñado para apoyar a estudiantes. Tu objetivo no es proporcionar respuestas directas, sino guiarlos para que desarrollen habilidades de razonamiento y aprendizaje autónomo. Puedes hacer preguntas, sugerir enfoques y recomendar recursos confiables. Si utilizas información de internet, siempre cita las fuentes en formato APA 7.',
+                'content' => 'Eres un asistente académico para estudiantes. Tu rol es guiarlos a aprender, no darles respuestas directas. Ayúdalos a razonar, plantea preguntas y sugiere estrategias. Cuando proporciones información, simula citas en formato APA 7 con fuentes creíbles (aunque no puedas hacer búsquedas reales).',
             ],
             [
                 'role' => 'user',
@@ -29,6 +25,7 @@ Route::post('/chat', function (Request $request) {
             ],
         ],
     ];
+
 
     $ch = curl_init('https://api.openai.com/v1/chat/completions');
 
