@@ -8,6 +8,7 @@ const message = ref('');
 const processing = ref(false);
 const error = ref('');
 const messages = ref<string[]>([]);
+const isLoading = ref(false);
 
 const submit = async () => {
     if (!message.value.trim()) return;
@@ -15,6 +16,7 @@ const submit = async () => {
     messages.value.push(`Tú: ${message.value}`);
     processing.value = true;
     error.value = '';
+    isLoading.value = true;
 
     try {
         const response = await fetch('/api/chat', {
@@ -36,10 +38,11 @@ const submit = async () => {
     } catch (e) {
         error.value = 'Error de conexión';
         messages.value.push('IA: No se pudo conectar al servidor.');
+    } finally {
+        isLoading.value = false;
+        message.value = '';
+        processing.value = false;
     }
-
-    message.value = '';
-    processing.value = false;
 };
 </script>
 
@@ -48,15 +51,55 @@ const submit = async () => {
 
     <AppLayout>
         <div class="flex h-[calc(100vh-4rem)] flex-col">
-            <!-- Área de mensajes -->
             <div class="flex-1 space-y-4 overflow-y-auto p-6">
-                <div v-for="(msg, index) in messages" :key="index" class="text-sm whitespace-pre-line">
+                <div v-if="messages.length === 0 && !isLoading" class="text-sm text-muted-foreground">Sin mensajes aún</div>
+                <div
+                    v-for="(msg, index) in messages"
+                    :key="index"
+                    class="text-sm whitespace-pre-line"
+                    :class="{ 'text-muted-foreground': msg.startsWith('IA:') }"
+                >
                     {{ msg }}
                 </div>
-                <div v-if="messages.length === 0" class="text-sm text-muted-foreground">Sin mensajes aún</div>
+                <div v-if="isLoading" class="text-sm text-muted-foreground">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                        <circle cx="18" cy="12" r="0" fill="#333333">
+                            <animate
+                                attributeName="r"
+                                begin=".67"
+                                calcMode="spline"
+                                dur="1.5s"
+                                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                                repeatCount="indefinite"
+                                values="0;2;0;0"
+                            />
+                        </circle>
+                        <circle cx="12" cy="12" r="0" fill="#333333">
+                            <animate
+                                attributeName="r"
+                                begin=".33"
+                                calcMode="spline"
+                                dur="1.5s"
+                                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                                repeatCount="indefinite"
+                                values="0;2;0;0"
+                            />
+                        </circle>
+                        <circle cx="6" cy="12" r="0" fill="#333333">
+                            <animate
+                                attributeName="r"
+                                begin="0"
+                                calcMode="spline"
+                                dur="1.5s"
+                                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                                repeatCount="indefinite"
+                                values="0;2;0;0"
+                            />
+                        </circle>
+                    </svg>
+                </div>
             </div>
 
-            <!-- Área de entrada de mensaje -->
             <form @submit.prevent="submit" class="border-t border-border p-4">
                 <div class="flex items-end gap-2">
                     <textarea
