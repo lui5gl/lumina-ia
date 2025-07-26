@@ -53,7 +53,7 @@ const submit = async () => {
                 <div v-for="(msg, index) in messages" :key="index" class="text-sm whitespace-pre-line">
                     {{ msg }}
                 </div>
-                <div v-if="messages.length === 0" class="text-sm text-muted-foreground italic">Sin mensajes aún...</div>
+                <div v-if="messages.length === 0" class="text-sm text-muted-foreground">Sin mensajes aún</div>
             </div>
 
             <!-- Área de entrada de mensaje -->
