@@ -59,7 +59,7 @@ const submit = async () => {
                 <div
                     v-for="(msg, index) in messages"
                     :key="index"
-                    class="rounded-lg px-4 py-2 text-sm whitespace-pre-wrap"
+                    class="rounded-lg p-4 h-fit text-sm "
                     :class="msg.from === 'ia' ? 'self-start bg-gray-100 text-gray-700' : 'self-end bg-neutral-800 text-white'"
                     v-html="marked.parse(msg.content)"
                 />
@@ -85,9 +85,9 @@ const submit = async () => {
                         v-model="message"
                         placeholder="Pregunta lo que quieras"
                         rows="2"
-                        class="w-full resize-none rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                        class="w-full resize-none rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:ring-1 focus:ring-neutral-500 focus:outline-none"
                     ></textarea>
-                    <Button type="submit" :disabled="processing" class="h-10 w-10 rounded-full p-0">
+                    <Button type="submit" :disabled="processing" class="h-10 w-10 rounded-full p-0 bg-neutral-800 m-auto">
                         <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M13 7.828V20h-2V7.828l-5.364 5.364l-1.414-1.414L12 4l7.778 7.778l-1.414 1.414z" />
                         </svg>
