@@ -26,7 +26,7 @@ Route::post('/chat', function (Request $request) {
         CURLOPT_POST => true,
         CURLOPT_HTTPHEADER => [
             'Content-Type: application/json',
-            'Authorization: Bearer ' . env('OPENAI_API_KEY'),
+            'Authorization: Bearer ' . config('services.openai.key'),
         ],
         CURLOPT_POSTFIELDS => json_encode($data),
     ]);
