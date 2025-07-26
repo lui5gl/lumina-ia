@@ -85,7 +85,7 @@ const submit = async () => {
                         v-model="message"
                         placeholder="Pregunta lo que quieras"
                         rows="2"
-                        class="field-sizing-content max-h-32 w-full resize-none rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:ring-1 focus:ring-neutral-500 focus:outline-none"
+                        class="max-h-32 w-full resize-none rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:ring-1 focus:ring-neutral-500 focus:outline-none"
                     ></textarea>
                     <Button type="submit" :disabled="processing" class="m-auto h-10 w-10 rounded-full bg-neutral-800 p-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
