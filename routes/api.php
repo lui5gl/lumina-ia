@@ -14,8 +14,19 @@ Route::post('/chat', function (Request $request) {
 
     $data = [
         'model' => 'gpt-4o',
+        'tool_choice' => 'auto',
+        'tools' => [
+            ['type' => 'web_search_preview'],
+        ],
         'messages' => [
-            ['role' => 'user', 'content' => $request->input('message')],
+            [
+                'role' => 'system',
+                'content' => 'Eres un asistente diseñado para apoyar a estudiantes. Tu objetivo no es proporcionar respuestas directas, sino guiarlos para que desarrollen habilidades de razonamiento y aprendizaje autónomo. Puedes hacer preguntas, sugerir enfoques y recomendar recursos confiables. Si utilizas información de internet, siempre cita las fuentes en formato APA 7.',
+            ],
+            [
+                'role' => 'user',
+                'content' => $request->input('message'),
+            ],
         ],
     ];
 
