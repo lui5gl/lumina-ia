@@ -60,11 +60,15 @@ const submit = async () => {
                     v-for="(msg, index) in messages"
                     :key="index"
                     class="h-fit rounded-lg p-4 text-sm"
-                    :class="msg.from === 'ia' ? 'self-start bg-gray-100 text-gray-700' : 'self-end bg-neutral-800 text-white'"
+                    :class="
+                        msg.from === 'ia'
+                            ? 'self-start rounded-bl-none border bg-gray-100 text-gray-700'
+                            : 'self-end rounded-br-none bg-neutral-800 text-white'
+                    "
                     v-html="marked.parse(msg.content)"
                 />
 
-                <div v-if="isLoading" class="text-sm text-gray-500 bg-gray-100 self-start px-2 rounded-lg">
+                <div v-if="isLoading" class="self-start rounded-lg bg-gray-100 px-2 text-sm text-gray-500">
                     <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
                         <circle cx="18" cy="12" r="0" fill="#333333">
                             <animate attributeName="r" begin=".67" dur="1.5s" values="0;2;0;0" repeatCount="indefinite" />
