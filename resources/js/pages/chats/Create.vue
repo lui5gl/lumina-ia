@@ -91,7 +91,7 @@ const submit = async () => {
                         rows="2"
                         class="max-h-32 w-full resize-none rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:ring-1 focus:ring-neutral-500 focus:outline-none"
                     ></textarea>
-                    <Button type="submit" :disabled="processing" class="m-auto h-10 w-10 rounded-full bg-neutral-800 p-0">
+                    <Button type="submit" :disabled="processing" class="m-auto h-12 w-12 rounded-full bg-neutral-800 p-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M13 7.828V20h-2V7.828l-5.364 5.364l-1.414-1.414L12 4l7.778 7.778l-1.414 1.414z" />
                         </svg>
