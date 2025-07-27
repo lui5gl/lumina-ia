@@ -54,7 +54,12 @@ const submit = async () => {
     <AppLayout>
         <div class="flex h-[calc(100vh-4rem)] flex-col bg-white text-gray-900">
             <div class="flex-1 space-y-4 overflow-y-auto p-6">
-                <div v-if="messages.length === 0 && !isLoading" class="text-sm text-gray-500">Sin mensajes aún</div>
+                <div
+                    v-if="messages.length === 0 && !isLoading"
+                    class="h-fit self-start rounded-lg rounded-bl-none border bg-gray-100 p-4 text-sm text-gray-700"
+                >
+                    ¡Hola! Soy tu asistente IA. Pregúntame lo que quieras.
+                </div>
 
                 <div
                     v-for="(msg, index) in messages"
