@@ -73,7 +73,7 @@ const submit = async () => {
                     v-html="marked.parse(msg.content)"
                 />
 
-                <div v-if="isLoading" class="self-start rounded-lg bg-gray-100 px-2 text-sm text-gray-500">
+                <div v-if="isLoading" class="self-start rounded-lg rounded-bl-none bg-gray-100 px-2 text-sm text-gray-500">
                     <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
                         <circle cx="18" cy="12" r="0" fill="#333333">
                             <animate attributeName="r" begin=".67" dur="1.5s" values="0;2;0;0" repeatCount="indefinite" />
